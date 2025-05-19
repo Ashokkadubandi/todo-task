@@ -1,7 +1,6 @@
-let c = 0
 function generateId(){
-    c = c+1
-    return c
+    const id = crypto.randomUUID()
+    return id
 }
 
 let todoList = []
@@ -10,21 +9,16 @@ let taskName = document.getElementById('task-title')
 let taskPrior = document.getElementById('prior')
 let taskTimeDate = document.getElementById('time-date')
 let todoTaskCon = document.getElementById('todo-task-cards')
-let todoObj = {taskName:'',priority:'',date:'',checked:false}
 
-taskName.addEventListener('keyup',function(e){
-    todoObj.taskName = e.target.value
-})
+console.log(taskPrior.value)
 
-taskPrior.onchange = function(e){
-    todoObj.priority = e.target.value
-}
-taskTimeDate.onchange = function(e){
-    todoObj.date = e.target.value
-}
+let initialTodo = {taskName:'',priority:'',date:'',checked:false}
+
+let todoObj = initialTodo
 
 
 function craeteTodoContainerView(todo){
+    console.log(todo)
     const {taskName,priority,date,checked,id} = todo
     const todoCard = document.createElement('div');
     const checkBox = document.createElement('input')
@@ -37,12 +31,13 @@ function craeteTodoContainerView(todo){
     const todoEditText = document.createElement('p')
     const todoDeleteText = document.createElement('p')
 
+    todoCard.classList.add('todo-card')
 
-    const checkCheckBox = id => {
-        console.log(id)
+
+    const checkCheckBox = todoid => {
         todoList.map(each => {
-            if(each.id == id){
-                each.checked = !each.checked
+            if(each.id === todoid){
+                each.check = !each.check
             }
         })
         console.log(todoList)
@@ -50,7 +45,10 @@ function craeteTodoContainerView(todo){
 
 
     todoTaskCon.appendChild(todoCard)
+
+    checkBox.id = id
     checkBox.type = 'checkbox'
+    checkBox.classList.add('check-box')
     checkBox.checked = checked
     checkBox.addEventListener('click',function(){
         checkCheckBox(id)
@@ -65,13 +63,25 @@ function craeteTodoContainerView(todo){
     todoContent.appendChild(todoConfig)
 
     todoContentTaskName.textContent = taskName
+    todoContentTaskName.classList.add('todo-task-name')
 
     todoConfig.classList.add('todo-content-config')
 
     todoContentPrior.textContent = priority
+    todoContentPrior.classList.add('todo-prior')
+    if(priority === 'High'){
+        // 37ff10
+        todoContentPrior.style.backgroundColor = '#90EE90';
+    }else if(priority === 'Medium'){
+        // ffae00
+        todoContentPrior.style.backgroundColor = '#FFA500';
+    }else if(priority === 'Low'){
+        todoContentPrior.style.backgroundColor = '#FF0000';
+    }
     todoConfig.appendChild(todoContentPrior)
 
     todoContentDate.textContent = date
+    todoContentDate.classList.add('todo-date')
     todoConfig.appendChild(todoContentDate)
 
     todoEditText.textContent = 'Edit'
@@ -80,13 +90,7 @@ function craeteTodoContainerView(todo){
     todoEditContainer.appendChild(todoEditText)
     todoEditContainer.appendChild(todoDeleteText)
 
-
-
-
-
-
 }
-
 
 function createTodoView(){
     if(todoList.length >= 1){
@@ -98,14 +102,19 @@ function createTodoView(){
 
 
 
-
-
-
-
 formSub.addEventListener('submit',function(e){
     e.preventDefault()
-    todoObj.id = generateId()
-    todoList.push(todoObj)
+    const newTodoObj = {
+        id:generateId(),
+        taskName:taskName.value,
+        priority:taskPrior.value,
+        date:taskTimeDate.value,
+        check:false
+    }
+    todoList.push(newTodoObj)
+    taskName.value = ''
+    taskPrior.value = ''
+    taskTimeDate.value = ''
     todoTaskCon.textContent = ''
     createTodoView()
 })

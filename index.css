@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
+*{
+    box-sizing: border-box;
+}
+.todo-containers{
+    display: flex;
+}
+.todo-task{
+    padding: 1rem;
+    text-align: center;
+}
+
+.creating-form{
+    padding: 1rem;
+    width: 30%;
+}
+#formSub{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    text-align: left;
+}
+#formSub label{
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+#formSub input,select{
+    padding: 0.8rem;
+    width: 100%;
+}
+
+#formSub button{
+    width: 120px;
+    height: 35px;
+    border: 0;
+    background-color: rgb(39, 61, 255);
+    color: white;
+    font-family: 'Roboto';
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.todo-dynamic-views-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+}
+
+.todo-card{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.check-box{
+    padding: 1rem;
+    background-color: black;
+}
+
+.todo-card-content{
+    padding-left: 2rem;
+    width: 80%;
+    text-align: left;
+
+}
+.todo-content-config{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    padding:0;
+}
+
+.todo-task-name{
+    font-size: 2rem;
+    padding: 0;
+    line-height: 0;
+    margin-bottom: 15px;
+}
+
+.todo-prior, .todo-date{
+    background-color: rgba(255, 255, 255, 0.281);
+    color: rgb(255, 247, 247);
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+    min-width: 90px;
+    height: 30px;
+    text-align: center;
+}
+.todo-date{
+    margin-left: 1rem;
+    color: black;
+    border: 1px solid rgb(43, 36, 36);
+}
