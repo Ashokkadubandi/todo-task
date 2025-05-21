@@ -15,7 +15,7 @@
                 <label htmlFor="task-title">Task Title</label>
                 <input id="task-title" placeholder="Enter task title"/>
                 <label htmlFor="prior">Priority</label>
-                <select value="default" id="prior">
+                <select id="prior">
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
@@ -23,12 +23,12 @@
                 <label htmlFor="time-date">Deadline</label>
                 <input id="time-date" type="date"/>
                 <button type="submit">Add Task</button>
+                <button id="saveData" type="button">Save</button>
             </form>
         </div>
         <div class="todo-dynamic-views-container">
             <div id="todo-task-cards"></div>
         </div>
-
         </div>
     </div>
     <script src="./index.js"></script>
